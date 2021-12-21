@@ -18,7 +18,7 @@ export default () => {
     <main>
       <Container style={{ marginTop: 16 }}>
         <Stats />
-        <Box mt={4}>
+        <Box mt={4} mb={4}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={2}>
               <Filter />
