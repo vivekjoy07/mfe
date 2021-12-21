@@ -21,7 +21,7 @@ import Rating from '@material-ui/lab/Rating'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
-
+import { priceFormat } from '@vivekjoy07/mfe-utils'
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 345,
@@ -114,7 +114,7 @@ export default function ProductItem() {
         <Grid container alignItems="center" spacing={1}>
           <Grid item>
             <Typography variant="h5" component={'h3'}>
-              $749.99
+              {priceFormat(749.99)}
             </Typography>
           </Grid>
           <Grid item>
