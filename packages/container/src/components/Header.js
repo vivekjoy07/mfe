@@ -1,98 +1,134 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import { Link as RouterLink } from 'react-router-dom';
+import React from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles, alpha } from '@material-ui/core/styles'
+import MenuIcon from '@material-ui/icons/Menu'
+import SearchIcon from '@material-ui/icons/Search'
+import MoreIcon from '@material-ui/icons/MoreVert'
+import CardGiftcardIcon from '@material-ui/icons/CardGiftcard'
+import InputBase from '@material-ui/core/InputBase'
+import Box from '@material-ui/core/Box'
+import { Link } from 'react-router-dom'
+import MenuToolbar from './header/MenuToolbar'
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  toolbar: {
+    minHeight: 128,
+    alignItems: 'flex-start',
+    paddingTop: theme.spacing(1),
 
-const useStyles = makeStyles((theme) => ({
-  '@global': {
-    ul: {
-      margin: 0,
-      padding: 0,
-      listStyle: 'none',
-    },
-    a: {
+    paddingBottom: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+    alignSelf: 'flex-end',
+  },
+  mainToolbar: {
+    backgroundColor: 'red',
+  },
+  menuToolbar: {
+    backgroundColor: '#f0f0f0',
+  },
+  link: {
+    marginRight: theme.spacing(2),
+    color: '#444',
+
+    '&:hover': {
       textDecoration: 'none',
     },
   },
-  appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+  linkText: {
+    fontWeight: '600',
+    fontSize: 14,
   },
-  toolbar: {
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+  holidayText: {
+    color: theme.palette.secondary.main,
   },
-  link: {
-    margin: theme.spacing(1, 1.5),
-  },
-  heroContent: {
-    padding: theme.spacing(8, 0, 6),
-  },
-  cardHeader: {
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[700],
-  },
-  cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    marginBottom: theme.spacing(2),
-  },
-  footer: {
-    borderTop: `1px solid ${theme.palette.divider}`,
-    marginTop: theme.spacing(8),
-    paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
+  search: {
+    position: 'relative',
+    borderRadius: 20,
+    backgroundColor: 'white',
+    '&:hover': {
+      backgroundColor: 'white',
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(6),
-      paddingBottom: theme.spacing(6),
+      marginLeft: theme.spacing(3),
+      width: 'auto',
     },
   },
-}));
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#777',
+  },
+  inputRoot: {
+    // color: 'inherit',
+    // backgroundColor: 'white',
+    width: '100%',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
 
-export default function Header({ signedIn, onSignOut }) {
-  const classes = useStyles();
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    // width: '100%',
+    // [theme.breakpoints.up('md')]: {
+    //   width: '20ch',
+    // },
+  },
+  brand: {
+    textDecoration: 'none',
+    color: '#fff',
+  },
+}))
 
-  const onClick = () => {
-    if (signedIn && onSignOut) {
-      onSignOut();
-    }
-  };
+export default function ProminentAppBar() {
+  const classes = useStyles()
 
   return (
-    <React.Fragment>
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        className={classes.appBar}
-      >
-        <Toolbar className={classes.toolbar}>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            component={RouterLink}
-            to="/"
-          >
-            App
-          </Typography>
-          <Button
-            color="primary"
-            variant="outlined"
-            className={classes.link}
-            component={RouterLink}
-            to={signedIn ? '/' : '/auth/signin'}
-            onClick={onClick}
-          >
-            {signedIn ? 'Logout' : 'Login'}
-          </Button>
+    <div className={classes.root}>
+      <AppBar position="fixed" color="primary" elevation={0}>
+        <Toolbar className={classes.mainToolbar}>
+          <Box display={'flex'} justifyContent={'space-between'}>
+            <Link to="/" className={classes.brand}>
+              <Typography variant="h4">MFD</Typography>
+            </Link>
+          </Box>
+          <Box flexGrow={1}>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </div>
+          </Box>
         </Toolbar>
+        <MenuToolbar />
       </AppBar>
-    </React.Fragment>
-  );
+    </div>
+  )
 }
