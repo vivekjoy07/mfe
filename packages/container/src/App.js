@@ -2,8 +2,6 @@ import React, { lazy, Suspense } from 'react'
 import { BrowserRouter, Link, Route, Switch } from 'react-router-dom'
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import PlpApp from './components/PlpApp'
-import PdpApp from './components/PdpApp'
 
 import Header from './components/Header'
 import { Toolbar } from '@material-ui/core'
