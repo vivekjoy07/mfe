@@ -1,10 +1,10 @@
 import React from 'react'
 import Box from '@material-ui/core/Box'
 import FormControl from '@material-ui/core/FormControl'
+import Typography from '@material-ui/core/Typography'
 
 import NativeSelect from '@material-ui/core/NativeSelect'
 import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '../../../../container/node_modules/@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   resultsText: {
