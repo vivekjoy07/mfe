@@ -18,6 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
+        env: 
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+          
       - run: npm run build
 
       - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
