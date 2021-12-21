@@ -26,8 +26,7 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
 }
 // If development and in isolation
 // call mount immediately
-// if (process.env.NODE_ENV === 'development') {
-if (document.querySelector('#_pdp-dev-root')) {
+if (process.env.NODE_ENV === 'development') {
   const devRoot = document.querySelector('#_pdp-dev-root')
   if (devRoot) {
     mount(devRoot, {
@@ -35,7 +34,6 @@ if (document.querySelector('#_pdp-dev-root')) {
     })
   }
 }
-// }
 
 // We are running through container
 // we should export mount function
