@@ -15,6 +15,7 @@ export default function PdpApp() {
           history.push(nextPathname)
         }
       },
+      standalone: true,
     })
 
     history.listen(onParentNavigate)

@@ -12,6 +12,8 @@ import InputBase from '@material-ui/core/InputBase'
 import Box from '@material-ui/core/Box'
 import { Link } from 'react-router-dom'
 import MenuToolbar from './header/MenuToolbar'
+import { useStore } from 'store/store'
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -99,6 +101,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function ProminentAppBar() {
+  const { count } = useStore()
   const classes = useStyles()
 
   return (
@@ -125,6 +128,7 @@ export default function ProminentAppBar() {
                 inputProps={{ 'aria-label': 'search' }}
               />
             </div>
+            <Typography color="white">{count}</Typography>
           </Box>
         </Toolbar>
         <MenuToolbar />

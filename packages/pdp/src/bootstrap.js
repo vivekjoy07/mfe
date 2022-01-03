@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { createMemoryHistory, createBrowserHistory } from 'history'
+import { StoreProvider } from 'store/store'
 import App from './App'
 
 // Mount function to start app
-const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (el, { onNavigate, defaultHistory, initialPath, standalone }) => {
   const history =
     defaultHistory ||
     createMemoryHistory({
@@ -14,8 +15,15 @@ const mount = (el, { onNavigate, defaultHistory, initialPath }) => {
   if (onNavigate) {
     history.listen(onNavigate)
   }
+  const render = standalone ? (
+    <StoreProvider>
+      <App history={history} />
+    </StoreProvider>
+  ) : (
+    <App history={history} />
+  )
 
-  ReactDOM.render(<App history={history} />, el)
+  ReactDOM.render(render, el)
 
   return {
     onParentNavigate({ pathname: nextPathname }) {
@@ -31,6 +39,7 @@ const devRoot = document.querySelector('#_pdp-dev-root')
 if (devRoot) {
   mount(devRoot, {
     defaultHistory: createBrowserHistory(),
+    standalone: true,
   })
 }
 // }

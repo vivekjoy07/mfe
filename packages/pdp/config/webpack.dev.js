@@ -18,6 +18,9 @@ const devConfig = {
     new ModuleFederationPlugin({
       name: 'pdp',
       filename: 'remoteEntry.js',
+      remotes: {
+        store: 'store@http://localhost:8084/remoteEntry.js',
+      },
       exposes: {
         './PdpApp': './src/bootstrap',
       },

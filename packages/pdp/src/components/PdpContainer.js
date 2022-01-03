@@ -9,6 +9,7 @@ import Link from '@material-ui/core/Link'
 import Rating from '@material-ui/lab/Rating'
 import { makeStyles } from '@material-ui/core/styles'
 import { priceFormat } from '@vivekjoy07/mfe-utils'
+import { useStore } from 'store/store'
 
 const useStyles = makeStyles(theme => ({
   productImage: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 const PdpContainer = () => {
+  const { increment, count } = useStore()
   const classes = useStyles()
   return (
     <main>
@@ -105,8 +107,9 @@ const PdpContainer = () => {
                       color="secondary"
                       size="large"
                       style={{ width: 220 }}
+                      onClick={increment}
                     >
-                      <Typography>ADD TO CART</Typography>
+                      <Typography>ADD TO CART {count}</Typography>
                     </Button>
                   </Box>
                 </Grid>

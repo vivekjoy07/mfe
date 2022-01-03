@@ -19,6 +19,7 @@ const devConfig = {
       remotes: {
         plp: 'plp@http://localhost:8081/remoteEntry.js',
         pdp: 'pdp@http://localhost:8082/remoteEntry.js',
+        store: 'store@http://localhost:8084/remoteEntry.js',
       },
       shared: packageJson.dependencies,
     }),

@@ -17,6 +17,7 @@ const devConfig = {
   plugins: [
     new ModuleFederationPlugin({
       name: 'plp',
+
       filename: 'remoteEntry.js',
       exposes: {
         './PlpApp': './src/bootstrap',
